@@ -6,7 +6,7 @@ const square = require("./lib/square")
 app.disable("x-powered-by")
 
 app.get('/', (req, res) => {
-    res.send("hello world");
+    res.send("Hello world");
 });
 
 app.get('/square/:nb', (req, res) => {
