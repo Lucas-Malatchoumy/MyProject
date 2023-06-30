@@ -2,9 +2,23 @@ name: Build MyProject
 on:
   push:
     branches:
-      - main
+       - main
 jobs:
-  DockerImage:
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+      - name: Do tests
+        run: |
+          cd src
+          npm i
+          npm test
+
+  Builds:
+    needs: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           file: deploy/prod/Dockerfile
-          context: src
+          context: .
           platforms: linux/amd64,linux/arm64
           push: true
           tags: lucas9715/my_project:latest
