@@ -1,18 +1,31 @@
 const express = require('express');
-const app     = express();
-const port    = 8080;
 const square = require("./lib/square")
+const app     = express();
+const bodyParser = require('body-parser');
+const port    = 8080;
+const sequelize = require('./db');
+const loginRoute = require('./routes/login');
+const registerRoute = require('./routes/register');
 
 app.disable("x-powered-by")
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use('/login', loginRoute);
+app.use('/register', registerRoute);
+app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-    res.send("Hello world");
-});
-
-app.get('/square/:nb', (req, res) => {
-	const nb = req.params.nb
-	res.send(square(parseInt(nb)).toString());
-});
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connected to the database');
+    return sequelize.sync();
+  })
+  .then(() => {
+    console.log('Models synchronized');
+  })
+  .catch((error) => {
+    console.error('Unable to connect to the database:', error);
+  });
 
 let server;
 
