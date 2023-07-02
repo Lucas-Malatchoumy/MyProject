@@ -31,20 +31,24 @@ res.send(square(parseInt(nb)).toString());
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connected to the database');
+    // Comment console.log to pass the tests
+    // console.log('Connected to the database');
     return sequelize.sync();
   })
   .then(() => {
-    console.log('Models synchronized');
+    // Comment console.log to pass the tests
+    // console.log('Models synchronized');
   })
   .catch((error) => {
-    console.error('Unable to connect to the database:', error);
+    // Comment console.log to pass the tests
+    // console.error('Unable to connect to the database:', error);
   });
 
 let server;
 
 server = app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  // Comment console.log to pass the tests
+  // console.log(`Server is running on port ${port}`);
 });
 
 module.exports = {
