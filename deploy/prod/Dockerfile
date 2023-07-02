@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY ./src .
 
-RUN npm i --ignore-scripts
+RUN npm install
 
 USER node
 

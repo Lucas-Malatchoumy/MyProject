@@ -16,6 +16,12 @@ jobs:
           cd src
           npm i
           npm test
+        env:
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_PORT: ${{ secrets.DB_PORT }}
 
   Builds:
     # I comment this line beacause tests pass but idk how to implement credential in ci/cd
