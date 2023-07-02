@@ -12,8 +12,5 @@ Follow the steps below to run the application locally:
 2. Run the project in your computer
 ```docker run -p 80:8080 my_project:latest```
 
-markdown
-Copy code
-
-5. Access the application in your browser:
+3. Access the application in your browser:
 Open your browser and visit `http://yourIP:80`.
